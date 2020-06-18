@@ -3,11 +3,30 @@ let day = moment().format('Do');
 let month = moment().format('MMMM');
 let year = moment().format('YYYY')
 let hour = moment().format('hA')
-$('#currentDay').text(`${weekday}, ${day} ${month} ${year}`);
-let storedTasks= localStorage.getItem('taskList')
-// write all hourblocks
+
 let past = true;
 let present = false;
+
+//Check for stored tasks
+let storedTasks= JSON.parse(localStorage.getItem('taskList'))
+if (!storedTasks) {
+    storedTasks = {
+        0: "",
+        1: "I work!",
+        2: "",
+        3: "",
+        4: "Yay, me too!!",
+        5: "",
+        6: "",
+        7: "",
+        8: "",
+        9: ""
+    }
+}
+// day etc printed on top of page
+$('#currentDay').text(`${weekday}, ${day} ${month} ${year}`);
+
+// write all hourblocks
 for (let i = 0; i < 9; i++) {
     let loopHour=moment().hour(i+9).format('hA')
     if (loopHour === hour) {
@@ -21,8 +40,9 @@ for (let i = 0; i < 9; i++) {
     let hourBlock = $(`<div class="col-1 hour" data-index="${i}">`)
     hourBlock.text(`${loopHour}`);
     thisRow.append(hourBlock)
-    //add the text area
+    //add the text area with stored tasks if any
     let textSpace = $(`<textarea class="col-10 description" data-index="${i}">`)
+    textSpace.text(storedTasks[i])
     //add past presetn future color based on hour
     if (past) {
         textSpace.addClass('past')
@@ -33,9 +53,14 @@ for (let i = 0; i < 9; i++) {
         textSpace.addClass('future')
     }
     thisRow.append(textSpace)
-    //TODO: add button picture?
-    thisRow.append(`<button class="col-1 btn saveBtn" data-index="${i}">`)
-    
+    //TODO: add button picture change
+    let btn = $(`<button class="col-1 btn saveBtn" data-index="${i}">`)
+    if (storedTasks[i].length){
+        btn.append(`<i class="fas fa-lock">`)
+    } else {
+        btn.append(`<i class="fas fa-unlock-alt">`)
+    }
+    thisRow.append(btn)
 }
 
 
