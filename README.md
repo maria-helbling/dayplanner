@@ -1,8 +1,10 @@
-# dayplanner
-Workday planner using jQuery and third-party APIs.
+# Workday planner
 
-A calendar application that allows the user to save events for each hour of the day.  HTML and CSS powered by jQuery.
+A calendar application that allows the user to save events for each hour of the day.
+The [live version can be demoed here](https://maria-helbling.github.io/dayplanner/).
+And the application looks like this at midday:
 
+![screenshot of dayplanner](screenshot.PNG)
 
 ## User Story
 
@@ -29,18 +31,26 @@ THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
 ```
+
+
 ## Build
 
-This app runs in the browser and features dynamically updated HTML and CSS powered by jQuery and [Moment.js](https://momentjs.com/).
+* The site is built using Bootstrap.
+   * The use of Bootstrap minimises the need for media queries for responsiveness.
+   * See [Bootstrap documentation](https://getbootstrap.com/docs/4.5/getting-started/introduction/) for customising the site with their provided options
+* FontAwesome is used for save key images. [Read more about fontAwesome use and installation here.](https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use)
+* Date and time manipulation is done using [Moment.js](https://momentjs.com/).
 
 ### Future plans
 
+-[ ] Add weather info
+-[ ] Add public holidays info
 
 ## Setup
 
 To clone the repo:
 ```
-git clone https://github.com/maria-helbling/jscode-quiz-game.git
+git clone https://github.com/maria-helbling/dayplanner.git
 ``` 
 
 ## Credits
